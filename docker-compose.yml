@@ -1,0 +1,102 @@
+version: '3.8' # Specify compose file version
+ 
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.1 # Using a specific version is generally better than latest
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - sensor-network
+ 
+  kafka: # Renamed from kafka_broker to match original setup service name
+    image: confluentinc/cp-kafka:7.6.1 # Using a specific version is generally better than latest
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper # Kafka depends on Zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+      - sensor-network
+ 
+  postgres:
+    image: postgres:15 # Using a specific version
+    hostname: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_DB: sensor
+      POSTGRES_USER: sensor_user
+      POSTGRES_PASSWORD: sensor_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - sensor-network
+ 
+  producer:
+    build:
+      context: ./producer
+    container_name: producer
+    depends_on:
+      - kafka # Depends on the kafka service name
+    networks:
+      - sensor-network
+ 
+  spark: # Updated Spark service based on your working snippet
+    image: bitnami/spark:3.4.1 # Use specific version matching packages if possible, instead of latest
+    container_name: spark
+    hostname: spark # Hostname for the container
+    ports:
+      - "45040:4040" # Map Spark UI to host port 45040
+    volumes:
+      # Mount your script (make sure name matches)
+      - ./spark-app/spark_stream.py:/app/spark_stream.py
+      # Mount the pre-downloaded Postgres JAR into Spark's jars dir
+      - ./jars/postgresql-42.7.4.jar:/opt/bitnami/spark/jars/postgresql-42.7.4.jar
+    # Command to submit the app using spark-submit
+    # Uses --packages for Kafka connector (Postgres JAR is mounted directly)
+    command: >
+      bash -c "spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 /app/spark_stream.py"
+    depends_on:
+      - kafka      # Depends on kafka service name
+      - postgres   # Also depends on postgres service
+    networks:
+      - sensor-network
+    environment: # Pass necessary environment variables if your script needs them
+       - POSTGRES_USER=sensor_user
+       - POSTGRES_PASSWORD=sensor_pass
+       - POSTGRES_DB=sensor
+       - POSTGRES_HOST=postgres # Service name for postgres
+       - KAFKA_BROKER=kafka:9092 # Service name for kafka
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./api/.env
+    depends_on:
+      - postgres
+    networks:
+      - sensor-network
+
+
+ 
+networks:
+  sensor-network:
+    name: sensor-network
+    driver: bridge
