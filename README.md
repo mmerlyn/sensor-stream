@@ -3,6 +3,13 @@
 
 This project is a real-time dashboard that streams **temperature** and **humidity** readings every 5 seconds. It showcases an end-to-end streaming data pipeline using:
 
+## Demo
+
+> Displays sensor readings every 5 seconds on a live-updating UI.
+
+[Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
+
+## Tech Stack
 - **Python** (data producer)
 - **Kafka + Zookeeper** (streaming platform)
 - **Apache Spark** (stream processing)
@@ -10,33 +17,6 @@ This project is a real-time dashboard that streams **temperature** and **humidit
 - **FastAPI** (REST API backend)
 - **React.js** (frontend dashboard)
 - **Docker Compose** (container orchestration)
-
-## Demo
-
-> Displays sensor readings every 5 seconds on a live-updating UI.
-
-[Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
-
-## Features
-
-- Simulated sensor data generation (Python)
-- Real-time processing with Spark Structured Streaming
-- Writes transformed data to PostgreSQL
-- FastAPI serves the latest reading
-- React frontend polls data every 5 seconds and updates the UI
-- Fully Dockerized with `docker-compose`
-
-## Tech Stack
-
-| Layer      | Tool                  |
-|------------|-----------------------|
-| Data Gen   | Python + KafkaProducer |
-| Stream     | Apache Kafka + Zookeeper |
-| Processing | Apache Spark          |
-| Storage    | PostgreSQL            |
-| Backend    | FastAPI               |
-| Frontend   | React + Recharts      |
-| Orchestration | Docker Compose     |
 
 ## 📁 Project Structure
 
@@ -74,9 +54,9 @@ Example response:
 
 ## To-Do / Enhancements
 
-- [ ] Add authentication layer to API
-- [ ] Allow querying history by timestamp
-- [ ] Deploy to cloud
+- Add authentication layer to API
+- Allow querying history by timestamp
+- Deploy to cloud
 
 ## 📚 Learnings
 
