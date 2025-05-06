@@ -11,10 +11,10 @@ for i in range(retries):
             bootstrap_servers='kafka:9092',
             value_serializer=lambda v: json.dumps(v).encode('utf-8')
         )
-        print("✅ Kafka producer connected successfully.")
+        print("Kafka producer connected successfully.")
         break
     except NoBrokersAvailable:
-        print(f"❌ Kafka broker not available, retrying in 5s... ({i + 1}/{retries})")
+        print(f"Kafka broker not available, retrying in 5s... ({i + 1}/{retries})")
         time.sleep(5)
 else:
     raise Exception("Kafka broker not available after several retries.")
@@ -23,8 +23,8 @@ topic = 'sensor-data'
 
 while True:
     data = {
-        'sensor_id': random.randint(1, 10),
-        'value': random.uniform(20.0, 30.0),
+        'temperature': round(random.uniform(20.0, 30.0), 2),
+        'humidity': round(random.uniform(40.0, 60.0), 2),
         'timestamp': time.time()
     }
     producer.send(topic, data)
