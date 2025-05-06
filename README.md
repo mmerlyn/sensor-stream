@@ -15,7 +15,7 @@ This project is a real-time dashboard that streams **temperature** and **humidit
 
 > Displays sensor readings every 5 seconds on a live-updating UI.
 
-![Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
+[Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
 
 ## Features
 
