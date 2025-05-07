@@ -10,15 +10,7 @@ This project is a real-time dashboard that streams **temperature** and **humidit
 [Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
 
 ## Tech Stack
-![image](https://github.com/user-attachments/assets/34a16592-5401-49a6-9e28-6d209d0f7631)
-
-- **Python** (data producer)
-- **Kafka + Zookeeper** (streaming platform)
-- **Apache Spark** (stream processing)
-- **PostgreSQL** (data storage)
-- **FastAPI** (REST API backend)
-- **React.js** (frontend dashboard)
-- **Docker Compose** (container orchestration)
+![image](https://github.com/user-attachments/assets/4565c405-bdc6-4d29-9fb5-c46b84900389)
 
 ## 📁 Project Structure
 
