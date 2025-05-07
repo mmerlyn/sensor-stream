@@ -3,11 +3,11 @@
 
 This project is a real-time dashboard that streams **temperature** and **humidity** readings every 5 seconds. It showcases an end-to-end streaming data pipeline using:
 
-## Demo
-
 > Displays sensor readings every 5 seconds on a live-updating UI.
 
-[Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
+▶️ [Watch Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
+
+📝 [Read the full blog on Medium](https://medium.com/@merlynmercylona/building-a-live-sensor-monitoring-system-with-kafka-spark-postgresql-fastapi-react-e66a2aa10550)
 
 ## Tech Stack
 ![image](https://github.com/user-attachments/assets/4565c405-bdc6-4d29-9fb5-c46b84900389)
@@ -58,5 +58,5 @@ This project helped me build a full streaming data pipeline using modern data to
 
 ## Author
 
-**Merlyn Mercy**  
+**Merlyn Mercylona**  
 GitHub: [@mmerlyn](https://github.com/mmerlyn)
