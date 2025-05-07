@@ -54,7 +54,7 @@ Example response:
 
 ## 📚 Learnings
 
-This project helped me build a full streaming data pipeline using modern data tools. It can be used as a template for any real-time dashboard involving time-series data.
+This project was more than just getting things to work—it gave me a chance to explore and connect several technologies in a practical, end-to-end system. I learned how different tools interact and support each other in a real-time setup. As someone working toward a career in software development, it gave me valuable hands-on experience with Docker, building REST APIs, integrating frontend and backend components, and managing data flow across services.
 
 ## Author
 
