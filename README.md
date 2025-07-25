@@ -1,5 +1,5 @@
 
-# Real-Time Sensor Dashboard with Kafka, Spark, PostgreSQL, FastAPI & React
+# 🟢 Real-Time Sensor Dashboard with Kafka, Spark, PostgreSQL, FastAPI & React
 
 This project is a real-time dashboard that streams **temperature** and **humidity** readings every 5 seconds. It showcases an end-to-end streaming data pipeline using:
 
@@ -58,5 +58,4 @@ This project was more than just getting things to work—it gave me a chance to 
 
 ## Author
 
-**Merlyn Mercylona**  
-GitHub: [@mmerlyn](https://github.com/mmerlyn)
+**Merlyn Mercylona**
