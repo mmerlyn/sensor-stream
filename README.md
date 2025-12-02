@@ -1,61 +1,46 @@
+# Real-Time Sensor Dashboard
 
-# 🟢 Real-Time Sensor Dashboard with Kafka, Spark, PostgreSQL, FastAPI & React
+A real-time dashboard that streams temperature and humidity readings from sensors using Kafka, Spark, and React.
 
-This project is a real-time dashboard that streams **temperature** and **humidity** readings every 5 seconds. It showcases an end-to-end streaming data pipeline using:
-
-> Displays sensor readings every 5 seconds on a live-updating UI.
-
-▶️ [Watch Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) 
-
-📝 [Read the full blog on Medium](https://medium.com/@merlynmercylona/building-a-live-sensor-monitoring-system-with-kafka-spark-postgresql-fastapi-react-e66a2aa10550)
+[Demo](https://drive.google.com/file/d/10sotn4D0T8xfHV6UxCW88erpHJdvhuak/view?usp=sharing) | [Blog](https://medium.com/@merlynmercylona/building-a-live-sensor-monitoring-system-with-kafka-spark-postgresql-fastapi-react-e66a2aa10550)
 
 ## Tech Stack
-![image](https://github.com/user-attachments/assets/4565c405-bdc6-4d29-9fb5-c46b84900389)
 
-## 📁 Project Structure
-
-```bash
-.
-├── api/                  # FastAPI backend
-│   └── main.py
-├── producer/             # Kafka Python data producer
-│   └── producer.py
-├── spark-app/
-│   └── spark_stream.py   # Spark streaming script
-├── frontend/             # React frontend
-│   └── src/
-├── jars/                 # PostgreSQL JDBC driver
-│   └── postgresql-42.7.4.jar
-├── docker-compose.yml
-└── README.md
-```
+- **Producer:** Python, kafka-python
+- **Stream Processing:** Apache Spark, PySpark
+- **Message Queue:** Apache Kafka, ZooKeeper
+- **Database:** PostgreSQL
+- **API:** FastAPI
+- **Frontend:** React, TypeScript, Recharts, Tailwind CSS
+- **Infra:** Docker, Docker Compose
 
 ## API Endpoints
 
-| Method | Endpoint     | Description              |
-|--------|--------------|--------------------------|
-| GET    | `/latest`    | Returns latest sensor data |
+| Method | Endpoint            | Description               |
+| ------ | ------------------- | ------------------------- |
+| GET    | `/latest`           | Get latest sensor reading |
+| GET    | `/history?limit=20` | Get last N readings       |
 
-Example response:
+## To-Do
 
-```json
-{
-  "temperature": 24.75,
-  "humidity": 62.3,
-  "timestamp": 1714898232.0
-}
-```
+- [ ] Add authentication
+- [ ] WebSocket support for real-time updates
+- [ ] Deploy to cloud
+- [ ] Add more sensor types
 
-## To-Do / Enhancements
+## Learnings
 
-- Add authentication layer to API
-- Allow querying history by timestamp
-- Deploy to cloud
+This project gave me hands-on experience with Docker, building REST APIs, integrating frontend and backend components, and managing data flow across services. As someone working toward a career in software development, this was a great way to understand how different tools interact in a real-time streaming setup.
 
-## 📚 Learnings
+Key takeaways:
 
-This project was more than just getting things to work—it gave me a chance to explore and connect several technologies in a practical, end-to-end system. I learned how different tools interact and support each other in a real-time setup. As someone working toward a career in software development, it gave me valuable hands-on experience with Docker, building REST APIs, integrating frontend and backend components, and managing data flow across services.
+- Setting up Kafka with ZooKeeper for message streaming
+- Writing Spark Streaming jobs to process real-time data
+- Connecting Spark to PostgreSQL using JDBC
+- Building a FastAPI backend with PostgreSQL
+- Creating live-updating charts with React and Recharts
+- Orchestrating multiple services with Docker Compose
 
-## Author
+## Notes
 
-**Merlyn Mercylona**
+This project was built as part of **CS 649 Big Data Tools & Methods** at San Diego State University.
