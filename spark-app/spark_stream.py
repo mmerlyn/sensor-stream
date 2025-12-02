@@ -1,9 +1,10 @@
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
-from pyspark.sql.types import StructType, FloatType, DoubleType
+from pyspark.sql.types import StructType, FloatType, DoubleType, StringType
  
 schema = StructType() \
+    .add("sensor_id", StringType()) \
     .add("temperature", FloatType()) \
     .add("humidity", FloatType()) \
     .add("timestamp", DoubleType())

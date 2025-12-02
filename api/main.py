@@ -39,3 +39,23 @@ def get_latest():
             cur.close()
         if conn:
             conn.close()
+
+@app.get("/history")
+def get_history(limit: int = 20):
+    conn = None
+    cur = None
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SELECT temperature, humidity, timestamp FROM sensor_data ORDER BY timestamp DESC LIMIT %s;", (limit,))
+        rows = cur.fetchall()
+        # Return in chronological order (oldest first)
+        return list(reversed(rows)) if rows else []
+    except Exception as e:
+        print("Error:", e)
+        return {"error": str(e)}
+    finally:
+        if cur:
+            cur.close()
+        if conn:
+            conn.close()

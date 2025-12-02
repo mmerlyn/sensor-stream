@@ -34,17 +34,16 @@ services:
       - sensor-network
  
   postgres:
-    image: postgres:15 
+    image: postgres:15
     hostname: postgres
     container_name: postgres
-    environment:
-      POSTGRES_DB: sensor
-      POSTGRES_USER: sensor_user
-      POSTGRES_PASSWORD: sensor_pass
+    env_file:
+      - .env
     ports:
       - "5432:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - sensor-network
  
@@ -57,37 +56,30 @@ services:
     networks:
       - sensor-network
  
-  spark: 
-    image: bitnami/spark:3.4.1 
+  spark:
+    image: bitnami/spark:3.4.1
     container_name: spark
-    hostname: spark 
+    hostname: spark
     ports:
-      - "45040:4040" 
+      - "45040:4040"
     volumes:
       - ./spark-app/spark_stream.py:/app/spark_stream.py
       - ./jars/postgresql-42.7.4.jar:/opt/bitnami/spark/jars/postgresql-42.7.4.jar
     command: >
       bash -c "spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 /app/spark_stream.py"
     depends_on:
-      - kafka      
-      - postgres   
+      - kafka
+      - postgres
     networks:
       - sensor-network
-    environment: 
-       - POSTGRES_USER=sensor_user
-       - POSTGRES_PASSWORD=sensor_pass
-       - POSTGRES_DB=sensor
-       - POSTGRES_HOST=postgres 
-       - KAFKA_BROKER=kafka:9092
+    env_file:
+      - .env
   api:
     build:
       context: ./api
     container_name: sensor-api
-    environment:
-      - POSTGRES_HOST=postgres
-      - POSTGRES_DB=sensor
-      - POSTGRES_USER=sensor_user
-      - POSTGRES_PASSWORD=sensor_pass
+    env_file:
+      - .env
     ports:
       - "8000:8000"
     depends_on:
