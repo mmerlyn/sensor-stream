@@ -43,4 +43,4 @@ Key takeaways:
 
 ## Notes
 
-This project was built as part of **CS 649 Big Data Tools & Methods** at San Diego State University.
+This project was done as part of **CS 649 Big Data Tools & Methods** at San Diego State University.
