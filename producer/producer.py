@@ -23,6 +23,7 @@ topic = 'sensor-data'
 
 while True:
     data = {
+        'sensor_id': 'sensor-001',
         'temperature': round(random.uniform(20.0, 30.0), 2),
         'humidity': round(random.uniform(40.0, 60.0), 2),
         'timestamp': time.time()
