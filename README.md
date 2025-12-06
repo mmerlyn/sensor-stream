@@ -102,14 +102,15 @@ I wanted to understand how real-time data systems work in production environment
 
 ## What I Learned
 
-- Setting up Kafka with ZooKeeper and understanding broker/topic concepts
-- Writing Spark Structured Streaming jobs with schema validation and sink configuration
-- Connecting Spark to PostgreSQL via JDBC with proper driver management
-- Building REST APIs with FastAPI including CORS and error handling
-- Creating live-updating React dashboards with polling and state management
-- Orchestrating multi-container applications with Docker Compose
-- Debugging distributed systems where data flows through multiple services
-- Designing database indexes for specific query patterns
+- **Distributed systems design**: Understanding how loosely-coupled services communicate through message queues and why decoupling producers from consumers improves system resilience
+- **Data pipeline architecture**: Designing end-to-end data flow from ingestion to storage to presentation, with clear boundaries between processing stages
+- **Schema enforcement**: Implementing strongly-typed data contracts at system boundaries to catch malformed data early and prevent downstream failures
+- **Database optimization**: Choosing appropriate indexing strategies based on query patterns rather than generic best practices
+- **Error handling in distributed systems**: Isolating failures to individual batches so one bad record doesn't halt the entire pipeline
+- **API design**: Building RESTful endpoints with proper CORS configuration, connection management, and meaningful error responses
+- **Frontend state management**: Separating concerns between data fetching, caching, and UI rendering in reactive applications
+- **Container orchestration**: Managing multi-service dependencies, networking, and environment configuration with Docker Compose
+- **Debugging across service boundaries**: Tracing data flow through multiple systems to identify where issues originate
 
 ## License
 
